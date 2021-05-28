@@ -30,3 +30,9 @@ func New() *Engine {
 	return engine
 }
 ```
+
+## mysql
+```
+show database
+use <数据库名>
+```
