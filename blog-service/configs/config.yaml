@@ -1,0 +1,22 @@
+Server:
+  RunMode: debug # gin运行模式
+  HttpPort: 8000 # 默认http监听端口
+  ReadTimeout: 60 # 允许读取的最大持续时间
+  WriteTimeout: 60 # 允许写入的最大持续时间
+App:
+  DefaultPageSize: 10 # 默认每页数量
+  MaxPageSize: 100 # 最大每页数量
+  LogSavePath: storage/logs # 应用日志存储路径
+  LogFileName: app
+  LogFileExt: .log
+Database:
+  DBType: mysql
+  Username: root
+  Password: admin
+  Host: 127.0.0.1:3306
+  DBName: blog_service
+  TablePrefix: blog_
+  Charset: utf8
+  ParseTime: True
+  MaxIdleConns: 10
+  MaxOpenConns: 30

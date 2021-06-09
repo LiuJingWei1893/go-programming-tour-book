@@ -6,7 +6,7 @@ import (
 )
 
 type Error struct {
-	code    int      `json:"code"`
+	code    int      `json:"code"` //这有问题吧，用小写还反射？struct field code has json tag but is not exported
 	msg     string   `json:"msg"`
 	datails []string `json:"datails"`
 }
