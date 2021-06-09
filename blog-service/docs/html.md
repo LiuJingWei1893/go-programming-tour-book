@@ -1,0 +1,8 @@
+POST
+
+DELETE
+
+PUT
+PATCH
+
+GET
