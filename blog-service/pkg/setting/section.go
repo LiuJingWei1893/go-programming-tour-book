@@ -1,6 +1,8 @@
 package setting
 
-import "time"
+import (
+	"time"
+)
 
 type ServerSettingS struct {
 	RunMode      string
