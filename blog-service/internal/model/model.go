@@ -6,6 +6,7 @@ import (
 	"github.com/go-programing-tour-book/blog-service/global"
 	"github.com/go-programing-tour-book/blog-service/pkg/setting"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type Model struct {

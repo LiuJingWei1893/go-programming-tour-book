@@ -9,7 +9,9 @@ import (
 	"github.com/go-programing-tour-book/blog-service/global"
 	"github.com/go-programing-tour-book/blog-service/internal/model"
 	"github.com/go-programing-tour-book/blog-service/internal/routers"
+	"github.com/go-programing-tour-book/blog-service/pkg/logger"
 	"github.com/go-programing-tour-book/blog-service/pkg/setting"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func init() {
@@ -17,7 +19,10 @@ func init() {
 	if err != nil {
 		log.Fatalf("init.setupSetting err: %v", err)
 	}
-	setupLogger()
+	err = setupLogger()
+	if err != nil {
+		log.Fatalf("init.setupLogger err: %v", err)
+	}
 	err = setupDBEngine()
 	if err != nil {
 		log.Fatalf("init.setupDBEngine err: %v", err)
@@ -34,7 +39,7 @@ func main() {
 		WriteTimeout:   global.ServerSetting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
-
+	global.Logger.Infof("%s: go-programming-tour-book/%s", "lw", "blog-service")
 	s.ListenAndServe()
 }
 
@@ -62,11 +67,18 @@ func setupSetting() error {
 	return nil
 }
 
-//看配置文件是否加载，打印日志
-func setupLogger() {
-	log.Printf("global.ServerSetting: %#v", *global.ServerSetting)    //%#v，打印结构体的名称，key，value
-	log.Printf("global.AppSetting: %+v", *global.AppSetting)          //%+v, 打印结构体的key， value
-	log.Printf("global.DataBaseSetting: %v", *global.DataBaseSetting) //%v，打印结构体的value
+//日志
+func setupLogger() error {
+	// log.Printf("global.ServerSetting: %#v", *global.ServerSetting)    //%#v，打印结构体的名称，key，value
+	// log.Printf("global.AppSetting: %+v", *global.AppSetting)          //%+v, 打印结构体的key， value
+	// log.Printf("global.DataBaseSetting: %v", *global.DataBaseSetting) //%v，打印结构体的value
+	global.Logger = logger.Newlogger(&lumberjack.Logger{
+		Filename:  global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + "/" + global.AppSetting.LogFileExt,
+		MaxSize:   600,  //MB
+		MaxAge:    10,   //10 days
+		LocalTime: true, //本地时间
+	}, "", log.LstdFlags).WithCaller(2)
+	return nil
 }
 
 //数据库
