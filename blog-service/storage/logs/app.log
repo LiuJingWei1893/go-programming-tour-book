@@ -1,0 +1,2 @@
+2021/06/15 14:26:52 {"callers":["F:/go-programming-tour-book/blog-service/main.go: 22 main.init.0"],"level":"info","message":"lw: go-programming-tour-book/blog-service","time":1623738412423202300}
+2021/06/16 16:16:34 {"callers":["F:/go-programming-tour-book/blog-service/main.go: 22 main.init.0"],"level":"info","message":"lw: go-programming-tour-book/blog-service","time":1623831394746642800}

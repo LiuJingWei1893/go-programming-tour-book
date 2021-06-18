@@ -73,7 +73,7 @@ func setupLogger() error {
 	// log.Printf("global.AppSetting: %+v", *global.AppSetting)          //%+v, 打印结构体的key， value
 	// log.Printf("global.DataBaseSetting: %v", *global.DataBaseSetting) //%v，打印结构体的value
 	global.Logger = logger.Newlogger(&lumberjack.Logger{
-		Filename:  global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + "/" + global.AppSetting.LogFileExt,
+		Filename:  global.AppSetting.LogSavePath + "/" + global.AppSetting.LogFileName + global.AppSetting.LogFileExt,
 		MaxSize:   600,  //MB
 		MaxAge:    10,   //10 days
 		LocalTime: true, //本地时间
