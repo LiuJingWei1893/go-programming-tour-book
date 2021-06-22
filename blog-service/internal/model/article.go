@@ -14,6 +14,10 @@ type Article struct {
 	CoverImageUrl string `json:"cover_image_url"`
 	State         uint   `json:"state"`
 }
+type ArticleSwagger struct {
+	List  []*Article
+	Paper app.Pager
+}
 
 func (a Article) TableName() string {
 	return "blog_article"
